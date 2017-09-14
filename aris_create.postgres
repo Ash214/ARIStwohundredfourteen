@@ -1,0 +1,412 @@
+CREATE TABLE "KnownPersons" (
+	"Id" integer NOT NULL,
+	"FirstName" varchar(255) NOT NULL DEFAULT 'UnknownPerson',
+	"MiddleName" varchar(255),
+	"SurName" varchar(255),
+	"BirthDate" DATETIME,
+	"IsPersonalKnowing" BOOLEAN NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownPersons_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownEntitys" (
+	"Id" integer NOT NULL,
+	"Name" varchar(255) NOT NULL DEFAULT 'UnknownEntity',
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownEntitys_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownFunctions" (
+	"Id" integer NOT NULL,
+	"Name" varchar(255) NOT NULL DEFAULT 'UnknownFunction',
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownFunctions_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownWords" (
+	"Id" integer NOT NULL,
+	"Name" varchar(255) NOT NULL,
+	"LanguagePartOfSpeechId" integer NOT NULL,
+	"LanguageTenseId" integer NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownWords_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownFunctionToEntityOneToOne" (
+	"Id" integer NOT NULL,
+	"FunctionId" integer NOT NULL,
+	"EntityId" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownFunctionToEntityOneToOne_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownWordToEntityOneToOne" (
+	"Id" integer NOT NULL,
+	"WordId" integer NOT NULL,
+	"EntityId" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownWordToEntityOneToOne_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownWordToFunctionOneToOne" (
+	"Id" integer NOT NULL,
+	"WordId" integer NOT NULL,
+	"FunctionId" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownWordToFunctionOneToOne_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "LanguagePartsOfSpeech" (
+	"Id" integer NOT NULL,
+	"Name" varchar(255) NOT NULL,
+	"QuestionsWhichAnswered" varchar(255) NOT NULL,
+	"MeaningNotion" varchar(255) NOT NULL,
+	"Examples" varchar(255) NOT NULL,
+	CONSTRAINT LanguagePartsOfSpeech_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "LanguageTenses" (
+	"Id" integer NOT NULL,
+	"Name" varchar(255) NOT NULL,
+	"QuestionsWhichAnswered" varchar(255) NOT NULL,
+	"MeaningNotion" varchar(255) NOT NULL,
+	"Examples" varchar(255) NOT NULL,
+	"IsEffected" BOOLEAN NOT NULL,
+	"IsDefined" BOOLEAN NOT NULL,
+	"IsCommited" BOOLEAN NOT NULL,
+	CONSTRAINT LanguageTenses_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownFunctionToFunctionOneToOne" (
+	"Id" integer NOT NULL,
+	"FunctionId0" integer NOT NULL,
+	"FunctionId1" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownFunctionToFunctionOneToOne_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownEntityToEntityOneToOne" (
+	"Id" integer NOT NULL,
+	"EntityId0" integer NOT NULL,
+	"EntityId1" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownEntityToEntityOneToOne_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownWordToWordOneToOne" (
+	"Id" integer NOT NULL,
+	"WordId0" integer NOT NULL,
+	"WordId1" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownWordToWordOneToOne_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "SpeechJournal" (
+	"Id" integer NOT NULL,
+	"Text" varchar(4000) NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT SpeechJournal_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "SpeechJournalToReceiverPersonOneToMany" (
+	"Id" integer NOT NULL,
+	"SpeechJournalId" integer NOT NULL,
+	"ReceiverPersonId" integer NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT SpeechJournalToReceiverPersonOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownWordToEntityOneToMany" (
+	"Id" integer NOT NULL,
+	"WordId" integer NOT NULL,
+	"EntityId" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownWordToEntityOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownWordToFunctionOneToMany" (
+	"Id" integer NOT NULL,
+	"WordId" integer NOT NULL,
+	"FunctionId" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownWordToFunctionOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownFunctionToEntityOneToMany" (
+	"Id" integer NOT NULL,
+	"FunctionId" integer NOT NULL,
+	"EntityId" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownFunctionToEntityOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownWordToWordOneToMany" (
+	"Id" integer NOT NULL,
+	"WordId0" integer NOT NULL,
+	"WordId1" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownWordToWordOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownFunctionToFunctionOneToMany" (
+	"Id" integer NOT NULL,
+	"FunctionId0" integer NOT NULL,
+	"FunctionId1" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownFunctionToFunctionOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownEntityToEntityOneToMany" (
+	"Id" integer NOT NULL,
+	"EntityId0" integer NOT NULL,
+	"EntityId1" integer NOT NULL,
+	"ConformityPercentage" FLOAT NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownEntityToEntityOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownSentenceWordsOrderMethods" (
+	"Id" integer NOT NULL,
+	"Method" varchar(255) NOT NULL,
+	"QuestionsWhichAnswered" varchar(255) NOT NULL,
+	"MeaningNotion" varchar(255) NOT NULL,
+	"Examples" varchar(255) NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownSentenceWordsOrderMethods_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "SpeechJournalToSourcePersonOneToMany" (
+	"Id" integer NOT NULL,
+	"SpeechJournalId" integer NOT NULL,
+	"SourcePersonId" integer NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT SpeechJournalToSourcePersonOneToMany_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownSectionSentenceOrderMethods" (
+	"Id" integer NOT NULL,
+	"Method" varchar(255) NOT NULL,
+	"QuestionsWhichAnswered" varchar(255) NOT NULL,
+	"MeaningNotion" varchar(255) NOT NULL,
+	"Examples" varchar(255) NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownSectionSentenceOrderMethods_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "KnownSpeechSectionOrderMethods" (
+	"Id" integer NOT NULL,
+	"Method" varchar(255) NOT NULL,
+	"QuestionsWhichAnswered" varchar(255) NOT NULL,
+	"MeaningNotion" varchar(255) NOT NULL,
+	"Examples" varchar(255) NOT NULL,
+	"DateAdded" DATETIME NOT NULL,
+	"DateReference" DATETIME NOT NULL,
+	"FarComment" varchar(4000),
+	CONSTRAINT KnownSpeechSectionOrderMethods_pk PRIMARY KEY ("Id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+
+
+
+ALTER TABLE "KnownWords" ADD CONSTRAINT "KnownWords_fk0" FOREIGN KEY ("LanguagePartOfSpeechId") REFERENCES "LanguagePartsOfSpeech"("Id");
+ALTER TABLE "KnownWords" ADD CONSTRAINT "KnownWords_fk1" FOREIGN KEY ("LanguageTenseId") REFERENCES "LanguageTenses"("Id");
+
+ALTER TABLE "KnownFunctionToEntityOneToOne" ADD CONSTRAINT "KnownFunctionToEntityOneToOne_fk0" FOREIGN KEY ("FunctionId") REFERENCES "KnownFunctions"("Id");
+ALTER TABLE "KnownFunctionToEntityOneToOne" ADD CONSTRAINT "KnownFunctionToEntityOneToOne_fk1" FOREIGN KEY ("EntityId") REFERENCES "KnownEntitys"("Id");
+
+ALTER TABLE "KnownWordToEntityOneToOne" ADD CONSTRAINT "KnownWordToEntityOneToOne_fk0" FOREIGN KEY ("WordId") REFERENCES "KnownWords"("Id");
+ALTER TABLE "KnownWordToEntityOneToOne" ADD CONSTRAINT "KnownWordToEntityOneToOne_fk1" FOREIGN KEY ("EntityId") REFERENCES "KnownEntitys"("Id");
+
+ALTER TABLE "KnownWordToFunctionOneToOne" ADD CONSTRAINT "KnownWordToFunctionOneToOne_fk0" FOREIGN KEY ("WordId") REFERENCES "KnownWords"("Id");
+ALTER TABLE "KnownWordToFunctionOneToOne" ADD CONSTRAINT "KnownWordToFunctionOneToOne_fk1" FOREIGN KEY ("FunctionId") REFERENCES "KnownFunctions"("Id");
+
+
+
+ALTER TABLE "KnownFunctionToFunctionOneToOne" ADD CONSTRAINT "KnownFunctionToFunctionOneToOne_fk0" FOREIGN KEY ("FunctionId0") REFERENCES "KnownFunctions"("Id");
+ALTER TABLE "KnownFunctionToFunctionOneToOne" ADD CONSTRAINT "KnownFunctionToFunctionOneToOne_fk1" FOREIGN KEY ("FunctionId1") REFERENCES "KnownFunctions"("Id");
+
+ALTER TABLE "KnownEntityToEntityOneToOne" ADD CONSTRAINT "KnownEntityToEntityOneToOne_fk0" FOREIGN KEY ("EntityId0") REFERENCES "KnownEntitys"("Id");
+ALTER TABLE "KnownEntityToEntityOneToOne" ADD CONSTRAINT "KnownEntityToEntityOneToOne_fk1" FOREIGN KEY ("EntityId1") REFERENCES "KnownEntitys"("Id");
+
+ALTER TABLE "KnownWordToWordOneToOne" ADD CONSTRAINT "KnownWordToWordOneToOne_fk0" FOREIGN KEY ("WordId0") REFERENCES "KnownWords"("Id");
+ALTER TABLE "KnownWordToWordOneToOne" ADD CONSTRAINT "KnownWordToWordOneToOne_fk1" FOREIGN KEY ("WordId1") REFERENCES "KnownWords"("Id");
+
+
+ALTER TABLE "SpeechJournalToReceiverPersonOneToMany" ADD CONSTRAINT "SpeechJournalToReceiverPersonOneToMany_fk0" FOREIGN KEY ("SpeechJournalId") REFERENCES "SpeechJournal"("Id");
+ALTER TABLE "SpeechJournalToReceiverPersonOneToMany" ADD CONSTRAINT "SpeechJournalToReceiverPersonOneToMany_fk1" FOREIGN KEY ("ReceiverPersonId") REFERENCES "KnownPersons"("Id");
+
+ALTER TABLE "KnownWordToEntityOneToMany" ADD CONSTRAINT "KnownWordToEntityOneToMany_fk0" FOREIGN KEY ("WordId") REFERENCES "KnownWords"("Id");
+ALTER TABLE "KnownWordToEntityOneToMany" ADD CONSTRAINT "KnownWordToEntityOneToMany_fk1" FOREIGN KEY ("EntityId") REFERENCES "KnownEntitys"("Id");
+
+ALTER TABLE "KnownWordToFunctionOneToMany" ADD CONSTRAINT "KnownWordToFunctionOneToMany_fk0" FOREIGN KEY ("WordId") REFERENCES "KnownWords"("Id");
+ALTER TABLE "KnownWordToFunctionOneToMany" ADD CONSTRAINT "KnownWordToFunctionOneToMany_fk1" FOREIGN KEY ("FunctionId") REFERENCES "KnownFunctions"("Id");
+
+ALTER TABLE "KnownFunctionToEntityOneToMany" ADD CONSTRAINT "KnownFunctionToEntityOneToMany_fk0" FOREIGN KEY ("FunctionId") REFERENCES "KnownFunctions"("Id");
+ALTER TABLE "KnownFunctionToEntityOneToMany" ADD CONSTRAINT "KnownFunctionToEntityOneToMany_fk1" FOREIGN KEY ("EntityId") REFERENCES "KnownEntitys"("Id");
+
+ALTER TABLE "KnownWordToWordOneToMany" ADD CONSTRAINT "KnownWordToWordOneToMany_fk0" FOREIGN KEY ("WordId0") REFERENCES "KnownWords"("Id");
+ALTER TABLE "KnownWordToWordOneToMany" ADD CONSTRAINT "KnownWordToWordOneToMany_fk1" FOREIGN KEY ("WordId1") REFERENCES "KnownWords"("Id");
+
+ALTER TABLE "KnownFunctionToFunctionOneToMany" ADD CONSTRAINT "KnownFunctionToFunctionOneToMany_fk0" FOREIGN KEY ("FunctionId0") REFERENCES "KnownFunctions"("Id");
+ALTER TABLE "KnownFunctionToFunctionOneToMany" ADD CONSTRAINT "KnownFunctionToFunctionOneToMany_fk1" FOREIGN KEY ("FunctionId1") REFERENCES "KnownFunctions"("Id");
+
+ALTER TABLE "KnownEntityToEntityOneToMany" ADD CONSTRAINT "KnownEntityToEntityOneToMany_fk0" FOREIGN KEY ("EntityId0") REFERENCES "KnownEntitys"("Id");
+ALTER TABLE "KnownEntityToEntityOneToMany" ADD CONSTRAINT "KnownEntityToEntityOneToMany_fk1" FOREIGN KEY ("EntityId1") REFERENCES "KnownEntitys"("Id");
+
+
+ALTER TABLE "SpeechJournalToSourcePersonOneToMany" ADD CONSTRAINT "SpeechJournalToSourcePersonOneToMany_fk0" FOREIGN KEY ("SpeechJournalId") REFERENCES "SpeechJournal"("Id");
+ALTER TABLE "SpeechJournalToSourcePersonOneToMany" ADD CONSTRAINT "SpeechJournalToSourcePersonOneToMany_fk1" FOREIGN KEY ("SourcePersonId") REFERENCES "KnownPersons"("Id");
+
+
+
+
+
