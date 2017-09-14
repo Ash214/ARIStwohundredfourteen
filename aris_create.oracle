@@ -1,0 +1,556 @@
+CREATE TABLE "KnownPersons" (
+	"Id" INT,
+	"FirstName" varchar,
+	"MiddleName" varchar,
+	"SurName" varchar,
+	"BirthDate" DATETIME,
+	"IsPersonalKnowing" BOOLEAN,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNPERSONS_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNPERSONS_SEQ"
+/
+CREATE trigger "BI_KNOWNPERSONS"
+  before insert on "KNOWNPERSONS"
+  for each row
+begin
+  select "KNOWNPERSONS_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownEntitys" (
+	"Id" INT,
+	"Name" varchar,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNENTITYS_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNENTITYS_SEQ"
+/
+CREATE trigger "BI_KNOWNENTITYS"
+  before insert on "KNOWNENTITYS"
+  for each row
+begin
+  select "KNOWNENTITYS_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownFunctions" (
+	"Id" INT,
+	"Name" varchar,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNFUNCTIONS_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNFUNCTIONS_SEQ"
+/
+CREATE trigger "BI_KNOWNFUNCTIONS"
+  before insert on "KNOWNFUNCTIONS"
+  for each row
+begin
+  select "KNOWNFUNCTIONS_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownWords" (
+	"Id" INT,
+	"Name" varchar,
+	"LanguagePartOfSpeechId" INT,
+	"LanguageTenseId" INT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNWORDS_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNWORDS_SEQ"
+/
+CREATE trigger "BI_KNOWNWORDS"
+  before insert on "KNOWNWORDS"
+  for each row
+begin
+  select "KNOWNWORDS_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownFunctionToEntityOneToOne" (
+	"Id" INT,
+	"FunctionId" INT,
+	"EntityId" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNFUNCTIONTOENTITYONETOONE_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNFUNCTIONTOENTITYONETOONE_SEQ"
+/
+CREATE trigger "BI_KNOWNFUNCTIONTOENTITYONETOONE"
+  before insert on "KNOWNFUNCTIONTOENTITYONETOONE"
+  for each row
+begin
+  select "KNOWNFUNCTIONTOENTITYONETOONE_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownWordToEntityOneToOne" (
+	"Id" INT,
+	"WordId" INT,
+	"EntityId" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNWORDTOENTITYONETOONE_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNWORDTOENTITYONETOONE_SEQ"
+/
+CREATE trigger "BI_KNOWNWORDTOENTITYONETOONE"
+  before insert on "KNOWNWORDTOENTITYONETOONE"
+  for each row
+begin
+  select "KNOWNWORDTOENTITYONETOONE_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownWordToFunctionOneToOne" (
+	"Id" INT,
+	"WordId" INT,
+	"FunctionId" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNWORDTOFUNCTIONONETOONE_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNWORDTOFUNCTIONONETOONE_SEQ"
+/
+CREATE trigger "BI_KNOWNWORDTOFUNCTIONONETOONE"
+  before insert on "KNOWNWORDTOFUNCTIONONETOONE"
+  for each row
+begin
+  select "KNOWNWORDTOFUNCTIONONETOONE_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "LanguagePartsOfSpeech" (
+	"Id" INT,
+	"Name" varchar,
+	"QuestionsWhichAnswered" varchar,
+	"MeaningNotion" varchar,
+	"Examples" varchar,
+	constraint LANGUAGEPARTSOFSPEECH_PK PRIMARY KEY ("Id")
+CREATE sequence "LANGUAGEPARTSOFSPEECH_SEQ"
+/
+CREATE trigger "BI_LANGUAGEPARTSOFSPEECH"
+  before insert on "LANGUAGEPARTSOFSPEECH"
+  for each row
+begin
+  select "LANGUAGEPARTSOFSPEECH_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "LanguageTenses" (
+	"Id" INT,
+	"Name" varchar,
+	"QuestionsWhichAnswered" varchar,
+	"MeaningNotion" varchar,
+	"Examples" varchar,
+	"IsEffected" BOOLEAN,
+	"IsDefined" BOOLEAN,
+	"IsCommited" BOOLEAN,
+	constraint LANGUAGETENSES_PK PRIMARY KEY ("Id")
+CREATE sequence "LANGUAGETENSES_SEQ"
+/
+CREATE trigger "BI_LANGUAGETENSES"
+  before insert on "LANGUAGETENSES"
+  for each row
+begin
+  select "LANGUAGETENSES_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownFunctionToFunctionOneToOne" (
+	"Id" INT,
+	"FunctionId0" INT,
+	"FunctionId1" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNFUNCTIONTOFUNCTIONONETOONE_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNFUNCTIONTOFUNCTIONONETOONE_SEQ"
+/
+CREATE trigger "BI_KNOWNFUNCTIONTOFUNCTIONONETOONE"
+  before insert on "KNOWNFUNCTIONTOFUNCTIONONETOONE"
+  for each row
+begin
+  select "KNOWNFUNCTIONTOFUNCTIONONETOONE_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownEntityToEntityOneToOne" (
+	"Id" INT,
+	"EntityId0" INT,
+	"EntityId1" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNENTITYTOENTITYONETOONE_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNENTITYTOENTITYONETOONE_SEQ"
+/
+CREATE trigger "BI_KNOWNENTITYTOENTITYONETOONE"
+  before insert on "KNOWNENTITYTOENTITYONETOONE"
+  for each row
+begin
+  select "KNOWNENTITYTOENTITYONETOONE_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownWordToWordOneToOne" (
+	"Id" INT,
+	"WordId0" INT,
+	"WordId1" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNWORDTOWORDONETOONE_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNWORDTOWORDONETOONE_SEQ"
+/
+CREATE trigger "BI_KNOWNWORDTOWORDONETOONE"
+  before insert on "KNOWNWORDTOWORDONETOONE"
+  for each row
+begin
+  select "KNOWNWORDTOWORDONETOONE_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "SpeechJournal" (
+	"Id" INT,
+	"Text" varchar,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint SPEECHJOURNAL_PK PRIMARY KEY ("Id")
+CREATE sequence "SPEECHJOURNAL_SEQ"
+/
+CREATE trigger "BI_SPEECHJOURNAL"
+  before insert on "SPEECHJOURNAL"
+  for each row
+begin
+  select "SPEECHJOURNAL_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "SpeechJournalToReceiverPersonOneToMany" (
+	"Id" INT,
+	"SpeechJournalId" INT,
+	"ReceiverPersonId" INT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint SPEECHJOURNALTORECEIVERPERSONONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "SPEECHJOURNALTORECEIVERPERSONONETOMANY_SEQ"
+/
+CREATE trigger "BI_SPEECHJOURNALTORECEIVERPERSONONETOMANY"
+  before insert on "SPEECHJOURNALTORECEIVERPERSONONETOMANY"
+  for each row
+begin
+  select "SPEECHJOURNALTORECEIVERPERSONONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownWordToEntityOneToMany" (
+	"Id" INT,
+	"WordId" INT,
+	"EntityId" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNWORDTOENTITYONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNWORDTOENTITYONETOMANY_SEQ"
+/
+CREATE trigger "BI_KNOWNWORDTOENTITYONETOMANY"
+  before insert on "KNOWNWORDTOENTITYONETOMANY"
+  for each row
+begin
+  select "KNOWNWORDTOENTITYONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownWordToFunctionOneToMany" (
+	"Id" INT,
+	"WordId" INT,
+	"FunctionId" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNWORDTOFUNCTIONONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNWORDTOFUNCTIONONETOMANY_SEQ"
+/
+CREATE trigger "BI_KNOWNWORDTOFUNCTIONONETOMANY"
+  before insert on "KNOWNWORDTOFUNCTIONONETOMANY"
+  for each row
+begin
+  select "KNOWNWORDTOFUNCTIONONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownFunctionToEntityOneToMany" (
+	"Id" INT,
+	"FunctionId" INT,
+	"EntityId" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNFUNCTIONTOENTITYONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNFUNCTIONTOENTITYONETOMANY_SEQ"
+/
+CREATE trigger "BI_KNOWNFUNCTIONTOENTITYONETOMANY"
+  before insert on "KNOWNFUNCTIONTOENTITYONETOMANY"
+  for each row
+begin
+  select "KNOWNFUNCTIONTOENTITYONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownWordToWordOneToMany" (
+	"Id" INT,
+	"WordId0" INT,
+	"WordId1" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNWORDTOWORDONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNWORDTOWORDONETOMANY_SEQ"
+/
+CREATE trigger "BI_KNOWNWORDTOWORDONETOMANY"
+  before insert on "KNOWNWORDTOWORDONETOMANY"
+  for each row
+begin
+  select "KNOWNWORDTOWORDONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownFunctionToFunctionOneToMany" (
+	"Id" INT,
+	"FunctionId0" INT,
+	"FunctionId1" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNFUNCTIONTOFUNCTIONONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNFUNCTIONTOFUNCTIONONETOMANY_SEQ"
+/
+CREATE trigger "BI_KNOWNFUNCTIONTOFUNCTIONONETOMANY"
+  before insert on "KNOWNFUNCTIONTOFUNCTIONONETOMANY"
+  for each row
+begin
+  select "KNOWNFUNCTIONTOFUNCTIONONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownEntityToEntityOneToMany" (
+	"Id" INT,
+	"EntityId0" INT,
+	"EntityId1" INT,
+	"ConformityPercentage" FLOAT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNENTITYTOENTITYONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNENTITYTOENTITYONETOMANY_SEQ"
+/
+CREATE trigger "BI_KNOWNENTITYTOENTITYONETOMANY"
+  before insert on "KNOWNENTITYTOENTITYONETOMANY"
+  for each row
+begin
+  select "KNOWNENTITYTOENTITYONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownSentenceWordsOrderMethods" (
+	"Id" INT,
+	"Method" varchar,
+	"QuestionsWhichAnswered" varchar,
+	"MeaningNotion" varchar,
+	"Examples" varchar,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNSENTENCEWORDSORDERMETHODS_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNSENTENCEWORDSORDERMETHODS_SEQ"
+/
+CREATE trigger "BI_KNOWNSENTENCEWORDSORDERMETHODS"
+  before insert on "KNOWNSENTENCEWORDSORDERMETHODS"
+  for each row
+begin
+  select "KNOWNSENTENCEWORDSORDERMETHODS_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "SpeechJournalToSourcePersonOneToMany" (
+	"Id" INT,
+	"SpeechJournalId" INT,
+	"SourcePersonId" INT,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint SPEECHJOURNALTOSOURCEPERSONONETOMANY_PK PRIMARY KEY ("Id")
+CREATE sequence "SPEECHJOURNALTOSOURCEPERSONONETOMANY_SEQ"
+/
+CREATE trigger "BI_SPEECHJOURNALTOSOURCEPERSONONETOMANY"
+  before insert on "SPEECHJOURNALTOSOURCEPERSONONETOMANY"
+  for each row
+begin
+  select "SPEECHJOURNALTOSOURCEPERSONONETOMANY_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownSectionSentenceOrderMethods" (
+	"Id" INT,
+	"Method" varchar,
+	"QuestionsWhichAnswered" varchar,
+	"MeaningNotion" varchar,
+	"Examples" varchar,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNSECTIONSENTENCEORDERMETHODS_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNSECTIONSENTENCEORDERMETHODS_SEQ"
+/
+CREATE trigger "BI_KNOWNSECTIONSENTENCEORDERMETHODS"
+  before insert on "KNOWNSECTIONSENTENCEORDERMETHODS"
+  for each row
+begin
+  select "KNOWNSECTIONSENTENCEORDERMETHODS_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+CREATE TABLE "KnownSpeechSectionOrderMethods" (
+	"Id" INT,
+	"Method" varchar,
+	"QuestionsWhichAnswered" varchar,
+	"MeaningNotion" varchar,
+	"Examples" varchar,
+	"DateAdded" DATETIME,
+	"DateReference" DATETIME,
+	"FarComment" varchar,
+	constraint KNOWNSPEECHSECTIONORDERMETHODS_PK PRIMARY KEY ("Id")
+CREATE sequence "KNOWNSPEECHSECTIONORDERMETHODS_SEQ"
+/
+CREATE trigger "BI_KNOWNSPEECHSECTIONORDERMETHODS"
+  before insert on "KNOWNSPEECHSECTIONORDERMETHODS"
+  for each row
+begin
+  select "KNOWNSPEECHSECTIONORDERMETHODS_SEQ".nextval into :NEW."Id" from dual;
+end;
+/
+
+)
+/
+
+
+
+ALTER TABLE "KnownWords" ADD CONSTRAINT "KnownWords_fk0" FOREIGN KEY ("LanguagePartOfSpeechId") REFERENCES LanguagePartsOfSpeech("Id");
+ALTER TABLE "KnownWords" ADD CONSTRAINT "KnownWords_fk1" FOREIGN KEY ("LanguageTenseId") REFERENCES LanguageTenses("Id");
+
+ALTER TABLE "KnownFunctionToEntityOneToOne" ADD CONSTRAINT "KnownFunctionToEntityOneToOne_fk0" FOREIGN KEY ("FunctionId") REFERENCES KnownFunctions("Id");
+ALTER TABLE "KnownFunctionToEntityOneToOne" ADD CONSTRAINT "KnownFunctionToEntityOneToOne_fk1" FOREIGN KEY ("EntityId") REFERENCES KnownEntitys("Id");
+
+ALTER TABLE "KnownWordToEntityOneToOne" ADD CONSTRAINT "KnownWordToEntityOneToOne_fk0" FOREIGN KEY ("WordId") REFERENCES KnownWords("Id");
+ALTER TABLE "KnownWordToEntityOneToOne" ADD CONSTRAINT "KnownWordToEntityOneToOne_fk1" FOREIGN KEY ("EntityId") REFERENCES KnownEntitys("Id");
+
+ALTER TABLE "KnownWordToFunctionOneToOne" ADD CONSTRAINT "KnownWordToFunctionOneToOne_fk0" FOREIGN KEY ("WordId") REFERENCES KnownWords("Id");
+ALTER TABLE "KnownWordToFunctionOneToOne" ADD CONSTRAINT "KnownWordToFunctionOneToOne_fk1" FOREIGN KEY ("FunctionId") REFERENCES KnownFunctions("Id");
+
+
+
+ALTER TABLE "KnownFunctionToFunctionOneToOne" ADD CONSTRAINT "KnownFunctionToFunctionOneToOne_fk0" FOREIGN KEY ("FunctionId0") REFERENCES KnownFunctions("Id");
+ALTER TABLE "KnownFunctionToFunctionOneToOne" ADD CONSTRAINT "KnownFunctionToFunctionOneToOne_fk1" FOREIGN KEY ("FunctionId1") REFERENCES KnownFunctions("Id");
+
+ALTER TABLE "KnownEntityToEntityOneToOne" ADD CONSTRAINT "KnownEntityToEntityOneToOne_fk0" FOREIGN KEY ("EntityId0") REFERENCES KnownEntitys("Id");
+ALTER TABLE "KnownEntityToEntityOneToOne" ADD CONSTRAINT "KnownEntityToEntityOneToOne_fk1" FOREIGN KEY ("EntityId1") REFERENCES KnownEntitys("Id");
+
+ALTER TABLE "KnownWordToWordOneToOne" ADD CONSTRAINT "KnownWordToWordOneToOne_fk0" FOREIGN KEY ("WordId0") REFERENCES KnownWords("Id");
+ALTER TABLE "KnownWordToWordOneToOne" ADD CONSTRAINT "KnownWordToWordOneToOne_fk1" FOREIGN KEY ("WordId1") REFERENCES KnownWords("Id");
+
+
+ALTER TABLE "SpeechJournalToReceiverPersonOneToMany" ADD CONSTRAINT "SpeechJournalToReceiverPersonOneToMany_fk0" FOREIGN KEY ("SpeechJournalId") REFERENCES SpeechJournal("Id");
+ALTER TABLE "SpeechJournalToReceiverPersonOneToMany" ADD CONSTRAINT "SpeechJournalToReceiverPersonOneToMany_fk1" FOREIGN KEY ("ReceiverPersonId") REFERENCES KnownPersons("Id");
+
+ALTER TABLE "KnownWordToEntityOneToMany" ADD CONSTRAINT "KnownWordToEntityOneToMany_fk0" FOREIGN KEY ("WordId") REFERENCES KnownWords("Id");
+ALTER TABLE "KnownWordToEntityOneToMany" ADD CONSTRAINT "KnownWordToEntityOneToMany_fk1" FOREIGN KEY ("EntityId") REFERENCES KnownEntitys("Id");
+
+ALTER TABLE "KnownWordToFunctionOneToMany" ADD CONSTRAINT "KnownWordToFunctionOneToMany_fk0" FOREIGN KEY ("WordId") REFERENCES KnownWords("Id");
+ALTER TABLE "KnownWordToFunctionOneToMany" ADD CONSTRAINT "KnownWordToFunctionOneToMany_fk1" FOREIGN KEY ("FunctionId") REFERENCES KnownFunctions("Id");
+
+ALTER TABLE "KnownFunctionToEntityOneToMany" ADD CONSTRAINT "KnownFunctionToEntityOneToMany_fk0" FOREIGN KEY ("FunctionId") REFERENCES KnownFunctions("Id");
+ALTER TABLE "KnownFunctionToEntityOneToMany" ADD CONSTRAINT "KnownFunctionToEntityOneToMany_fk1" FOREIGN KEY ("EntityId") REFERENCES KnownEntitys("Id");
+
+ALTER TABLE "KnownWordToWordOneToMany" ADD CONSTRAINT "KnownWordToWordOneToMany_fk0" FOREIGN KEY ("WordId0") REFERENCES KnownWords("Id");
+ALTER TABLE "KnownWordToWordOneToMany" ADD CONSTRAINT "KnownWordToWordOneToMany_fk1" FOREIGN KEY ("WordId1") REFERENCES KnownWords("Id");
+
+ALTER TABLE "KnownFunctionToFunctionOneToMany" ADD CONSTRAINT "KnownFunctionToFunctionOneToMany_fk0" FOREIGN KEY ("FunctionId0") REFERENCES KnownFunctions("Id");
+ALTER TABLE "KnownFunctionToFunctionOneToMany" ADD CONSTRAINT "KnownFunctionToFunctionOneToMany_fk1" FOREIGN KEY ("FunctionId1") REFERENCES KnownFunctions("Id");
+
+ALTER TABLE "KnownEntityToEntityOneToMany" ADD CONSTRAINT "KnownEntityToEntityOneToMany_fk0" FOREIGN KEY ("EntityId0") REFERENCES KnownEntitys("Id");
+ALTER TABLE "KnownEntityToEntityOneToMany" ADD CONSTRAINT "KnownEntityToEntityOneToMany_fk1" FOREIGN KEY ("EntityId1") REFERENCES KnownEntitys("Id");
+
+
+ALTER TABLE "SpeechJournalToSourcePersonOneToMany" ADD CONSTRAINT "SpeechJournalToSourcePersonOneToMany_fk0" FOREIGN KEY ("SpeechJournalId") REFERENCES SpeechJournal("Id");
+ALTER TABLE "SpeechJournalToSourcePersonOneToMany" ADD CONSTRAINT "SpeechJournalToSourcePersonOneToMany_fk1" FOREIGN KEY ("SourcePersonId") REFERENCES KnownPersons("Id");
+
+
+
+
+
