@@ -9,4 +9,4 @@ Note: the field ConformityPercentage must be real and lie in the interval [-1 ..
 
 
 
-Authorship and source code remains with the developer. When writing scientific articles necessarily quoting author (Shaikhutdinov Albert Anisovich).
+Authorship and source code remains with the developer. When writing scientific articles necessarily quoting author (Shaikhutdinov Albert).
