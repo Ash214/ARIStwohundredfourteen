@@ -1,0 +1,238 @@
+CREATE TABLE KnownPersons (
+	Id integer,
+	FirstName varchar,
+	MiddleName varchar,
+	SurName varchar,
+	BirthDate datetime,
+	IsPersonalKnowing boolean,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownEntitys (
+	Id integer,
+	Name varchar,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownFunctions (
+	Id integer,
+	Name varchar,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownWords (
+	Id integer,
+	Name varchar,
+	LanguagePartOfSpeechId integer,
+	LanguageTenseId integer,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownFunctionToEntityOneToOne (
+	Id integer,
+	FunctionId integer,
+	EntityId integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownWordToEntityOneToOne (
+	Id integer,
+	WordId integer,
+	EntityId integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownWordToFunctionOneToOne (
+	Id integer,
+	WordId integer,
+	FunctionId integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE LanguagePartsOfSpeech (
+	Id integer,
+	Name varchar,
+	QuestionsWhichAnswered varchar,
+	MeaningNotion varchar,
+	Examples varchar
+);
+
+CREATE TABLE LanguageTenses (
+	Id integer,
+	Name varchar,
+	QuestionsWhichAnswered varchar,
+	MeaningNotion varchar,
+	Examples varchar,
+	IsEffected boolean,
+	IsDefined boolean,
+	IsCommited boolean
+);
+
+CREATE TABLE KnownFunctionToFunctionOneToOne (
+	Id integer,
+	FunctionId0 integer,
+	FunctionId1 integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownEntityToEntityOneToOne (
+	Id integer,
+	EntityId0 integer,
+	EntityId1 integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownWordToWordOneToOne (
+	Id integer,
+	WordId0 integer,
+	WordId1 integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE SpeechJournal (
+	Id integer,
+	Text varchar,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE SpeechJournalToReceiverPersonOneToMany (
+	Id integer,
+	SpeechJournalId integer,
+	ReceiverPersonId integer,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownWordToEntityOneToMany (
+	Id integer,
+	WordId integer,
+	EntityId integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownWordToFunctionOneToMany (
+	Id integer,
+	WordId integer,
+	FunctionId integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownFunctionToEntityOneToMany (
+	Id integer,
+	FunctionId integer,
+	EntityId integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownWordToWordOneToMany (
+	Id integer,
+	WordId0 integer,
+	WordId1 integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownFunctionToFunctionOneToMany (
+	Id integer,
+	FunctionId0 integer,
+	FunctionId1 integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownEntityToEntityOneToMany (
+	Id integer,
+	EntityId0 integer,
+	EntityId1 integer,
+	ConformityPercentage float,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownSentenceWordsOrderMethods (
+	Id integer,
+	Method varchar,
+	QuestionsWhichAnswered varchar,
+	MeaningNotion varchar,
+	Examples varchar,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE SpeechJournalToSourcePersonOneToMany (
+	Id integer,
+	SpeechJournalId integer,
+	SourcePersonId integer,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownSectionSentenceOrderMethods (
+	Id integer,
+	Method varchar,
+	QuestionsWhichAnswered varchar,
+	MeaningNotion varchar,
+	Examples varchar,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+CREATE TABLE KnownSpeechSectionOrderMethods (
+	Id integer,
+	Method varchar,
+	QuestionsWhichAnswered varchar,
+	MeaningNotion varchar,
+	Examples varchar,
+	DateAdded datetime,
+	DateReference datetime,
+	FarComment varchar
+);
+
+
+
