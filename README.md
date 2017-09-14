@@ -5,7 +5,7 @@ It is proposed to implement an example of the IP implemented on the following pr
 
 
 
-Note: the field ConformityPercentage must be real and lie in the interval [-1 .. 0 .. 1]. Where 1 means a complete synonym for connection, -1 is the complete opposite of 0 is the value of this when the system is not yet known. Also provided is null in order to allow the system to reset mistakenly sformirovannye connection.
+Note: the field ConformityPercentage must be real and lie in the interval [-1 .. 0 .. 1]. Where 1 means a complete synonym for connection, -1 is the complete opposite, 0 is the value of this when the system is not yet known. Also provided is null in order to allow the system to reset mistakenly connection.
 
 
 
