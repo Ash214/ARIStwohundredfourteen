@@ -1,0 +1,532 @@
+CREATE TABLE [KnownPersons] (
+	Id integer NOT NULL,
+	FirstName varchar(255) NOT NULL DEFAULT 'UnknownPerson',
+	MiddleName varchar(255),
+	SurName varchar(255),
+	BirthDate datetime,
+	IsPersonalKnowing boolean NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNPERSONS] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownEntitys] (
+	Id integer NOT NULL,
+	Name varchar(255) NOT NULL DEFAULT 'UnknownEntity',
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNENTITYS] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownFunctions] (
+	Id integer NOT NULL,
+	Name varchar(255) NOT NULL DEFAULT 'UnknownFunction',
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNFUNCTIONS] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownWords] (
+	Id integer NOT NULL,
+	Name varchar(255) NOT NULL,
+	LanguagePartOfSpeechId integer NOT NULL,
+	LanguageTenseId integer NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNWORDS] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownFunctionToEntityOneToOne] (
+	Id integer NOT NULL,
+	FunctionId integer NOT NULL,
+	EntityId integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNFUNCTIONTOENTITYONETOONE] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownWordToEntityOneToOne] (
+	Id integer NOT NULL,
+	WordId integer NOT NULL,
+	EntityId integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNWORDTOENTITYONETOONE] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownWordToFunctionOneToOne] (
+	Id integer NOT NULL,
+	WordId integer NOT NULL,
+	FunctionId integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNWORDTOFUNCTIONONETOONE] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [LanguagePartsOfSpeech] (
+	Id integer NOT NULL,
+	Name varchar(255) NOT NULL,
+	QuestionsWhichAnswered varchar(255) NOT NULL,
+	MeaningNotion varchar(255) NOT NULL,
+	Examples varchar(255) NOT NULL,
+  CONSTRAINT [PK_LANGUAGEPARTSOFSPEECH] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [LanguageTenses] (
+	Id integer NOT NULL,
+	Name varchar(255) NOT NULL,
+	QuestionsWhichAnswered varchar(255) NOT NULL,
+	MeaningNotion varchar(255) NOT NULL,
+	Examples varchar(255) NOT NULL,
+	IsEffected boolean NOT NULL,
+	IsDefined boolean NOT NULL,
+	IsCommited boolean NOT NULL,
+  CONSTRAINT [PK_LANGUAGETENSES] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownFunctionToFunctionOneToOne] (
+	Id integer NOT NULL,
+	FunctionId0 integer NOT NULL,
+	FunctionId1 integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNFUNCTIONTOFUNCTIONONETOONE] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownEntityToEntityOneToOne] (
+	Id integer NOT NULL,
+	EntityId0 integer NOT NULL,
+	EntityId1 integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNENTITYTOENTITYONETOONE] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownWordToWordOneToOne] (
+	Id integer NOT NULL,
+	WordId0 integer NOT NULL,
+	WordId1 integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNWORDTOWORDONETOONE] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [SpeechJournal] (
+	Id integer NOT NULL,
+	Text varchar(4000) NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_SPEECHJOURNAL] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [SpeechJournalToReceiverPersonOneToMany] (
+	Id integer NOT NULL,
+	SpeechJournalId integer NOT NULL,
+	ReceiverPersonId integer NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_SPEECHJOURNALTORECEIVERPERSONONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownWordToEntityOneToMany] (
+	Id integer NOT NULL,
+	WordId integer NOT NULL,
+	EntityId integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNWORDTOENTITYONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownWordToFunctionOneToMany] (
+	Id integer NOT NULL,
+	WordId integer NOT NULL,
+	FunctionId integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNWORDTOFUNCTIONONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownFunctionToEntityOneToMany] (
+	Id integer NOT NULL,
+	FunctionId integer NOT NULL,
+	EntityId integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNFUNCTIONTOENTITYONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownWordToWordOneToMany] (
+	Id integer NOT NULL,
+	WordId0 integer NOT NULL,
+	WordId1 integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNWORDTOWORDONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownFunctionToFunctionOneToMany] (
+	Id integer NOT NULL,
+	FunctionId0 integer NOT NULL,
+	FunctionId1 integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNFUNCTIONTOFUNCTIONONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownEntityToEntityOneToMany] (
+	Id integer NOT NULL,
+	EntityId0 integer NOT NULL,
+	EntityId1 integer NOT NULL,
+	ConformityPercentage float NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNENTITYTOENTITYONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownSentenceWordsOrderMethods] (
+	Id integer NOT NULL,
+	Method varchar(255) NOT NULL,
+	QuestionsWhichAnswered varchar(255) NOT NULL,
+	MeaningNotion varchar(255) NOT NULL,
+	Examples varchar(255) NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNSENTENCEWORDSORDERMETHODS] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [SpeechJournalToSourcePersonOneToMany] (
+	Id integer NOT NULL,
+	SpeechJournalId integer NOT NULL,
+	SourcePersonId integer NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_SPEECHJOURNALTOSOURCEPERSONONETOMANY] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownSectionSentenceOrderMethods] (
+	Id integer NOT NULL,
+	Method varchar(255) NOT NULL,
+	QuestionsWhichAnswered varchar(255) NOT NULL,
+	MeaningNotion varchar(255) NOT NULL,
+	Examples varchar(255) NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNSECTIONSENTENCEORDERMETHODS] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [KnownSpeechSectionOrderMethods] (
+	Id integer NOT NULL,
+	Method varchar(255) NOT NULL,
+	QuestionsWhichAnswered varchar(255) NOT NULL,
+	MeaningNotion varchar(255) NOT NULL,
+	Examples varchar(255) NOT NULL,
+	DateAdded datetime NOT NULL,
+	DateReference datetime NOT NULL,
+	FarComment varchar(4000),
+  CONSTRAINT [PK_KNOWNSPEECHSECTIONORDERMETHODS] PRIMARY KEY CLUSTERED
+  (
+  [Id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+
+
+
+ALTER TABLE [KnownWords] WITH CHECK ADD CONSTRAINT [KnownWords_fk0] FOREIGN KEY ([LanguagePartOfSpeechId]) REFERENCES [LanguagePartsOfSpeech]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWords] CHECK CONSTRAINT [KnownWords_fk0]
+GO
+ALTER TABLE [KnownWords] WITH CHECK ADD CONSTRAINT [KnownWords_fk1] FOREIGN KEY ([LanguageTenseId]) REFERENCES [LanguageTenses]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWords] CHECK CONSTRAINT [KnownWords_fk1]
+GO
+
+ALTER TABLE [KnownFunctionToEntityOneToOne] WITH CHECK ADD CONSTRAINT [KnownFunctionToEntityOneToOne_fk0] FOREIGN KEY ([FunctionId]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToEntityOneToOne] CHECK CONSTRAINT [KnownFunctionToEntityOneToOne_fk0]
+GO
+ALTER TABLE [KnownFunctionToEntityOneToOne] WITH CHECK ADD CONSTRAINT [KnownFunctionToEntityOneToOne_fk1] FOREIGN KEY ([EntityId]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToEntityOneToOne] CHECK CONSTRAINT [KnownFunctionToEntityOneToOne_fk1]
+GO
+
+ALTER TABLE [KnownWordToEntityOneToOne] WITH CHECK ADD CONSTRAINT [KnownWordToEntityOneToOne_fk0] FOREIGN KEY ([WordId]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToEntityOneToOne] CHECK CONSTRAINT [KnownWordToEntityOneToOne_fk0]
+GO
+ALTER TABLE [KnownWordToEntityOneToOne] WITH CHECK ADD CONSTRAINT [KnownWordToEntityOneToOne_fk1] FOREIGN KEY ([EntityId]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToEntityOneToOne] CHECK CONSTRAINT [KnownWordToEntityOneToOne_fk1]
+GO
+
+ALTER TABLE [KnownWordToFunctionOneToOne] WITH CHECK ADD CONSTRAINT [KnownWordToFunctionOneToOne_fk0] FOREIGN KEY ([WordId]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToFunctionOneToOne] CHECK CONSTRAINT [KnownWordToFunctionOneToOne_fk0]
+GO
+ALTER TABLE [KnownWordToFunctionOneToOne] WITH CHECK ADD CONSTRAINT [KnownWordToFunctionOneToOne_fk1] FOREIGN KEY ([FunctionId]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToFunctionOneToOne] CHECK CONSTRAINT [KnownWordToFunctionOneToOne_fk1]
+GO
+
+
+
+ALTER TABLE [KnownFunctionToFunctionOneToOne] WITH CHECK ADD CONSTRAINT [KnownFunctionToFunctionOneToOne_fk0] FOREIGN KEY ([FunctionId0]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToFunctionOneToOne] CHECK CONSTRAINT [KnownFunctionToFunctionOneToOne_fk0]
+GO
+ALTER TABLE [KnownFunctionToFunctionOneToOne] WITH CHECK ADD CONSTRAINT [KnownFunctionToFunctionOneToOne_fk1] FOREIGN KEY ([FunctionId1]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToFunctionOneToOne] CHECK CONSTRAINT [KnownFunctionToFunctionOneToOne_fk1]
+GO
+
+ALTER TABLE [KnownEntityToEntityOneToOne] WITH CHECK ADD CONSTRAINT [KnownEntityToEntityOneToOne_fk0] FOREIGN KEY ([EntityId0]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownEntityToEntityOneToOne] CHECK CONSTRAINT [KnownEntityToEntityOneToOne_fk0]
+GO
+ALTER TABLE [KnownEntityToEntityOneToOne] WITH CHECK ADD CONSTRAINT [KnownEntityToEntityOneToOne_fk1] FOREIGN KEY ([EntityId1]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownEntityToEntityOneToOne] CHECK CONSTRAINT [KnownEntityToEntityOneToOne_fk1]
+GO
+
+ALTER TABLE [KnownWordToWordOneToOne] WITH CHECK ADD CONSTRAINT [KnownWordToWordOneToOne_fk0] FOREIGN KEY ([WordId0]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToWordOneToOne] CHECK CONSTRAINT [KnownWordToWordOneToOne_fk0]
+GO
+ALTER TABLE [KnownWordToWordOneToOne] WITH CHECK ADD CONSTRAINT [KnownWordToWordOneToOne_fk1] FOREIGN KEY ([WordId1]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToWordOneToOne] CHECK CONSTRAINT [KnownWordToWordOneToOne_fk1]
+GO
+
+
+ALTER TABLE [SpeechJournalToReceiverPersonOneToMany] WITH CHECK ADD CONSTRAINT [SpeechJournalToReceiverPersonOneToMany_fk0] FOREIGN KEY ([SpeechJournalId]) REFERENCES [SpeechJournal]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [SpeechJournalToReceiverPersonOneToMany] CHECK CONSTRAINT [SpeechJournalToReceiverPersonOneToMany_fk0]
+GO
+ALTER TABLE [SpeechJournalToReceiverPersonOneToMany] WITH CHECK ADD CONSTRAINT [SpeechJournalToReceiverPersonOneToMany_fk1] FOREIGN KEY ([ReceiverPersonId]) REFERENCES [KnownPersons]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [SpeechJournalToReceiverPersonOneToMany] CHECK CONSTRAINT [SpeechJournalToReceiverPersonOneToMany_fk1]
+GO
+
+ALTER TABLE [KnownWordToEntityOneToMany] WITH CHECK ADD CONSTRAINT [KnownWordToEntityOneToMany_fk0] FOREIGN KEY ([WordId]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToEntityOneToMany] CHECK CONSTRAINT [KnownWordToEntityOneToMany_fk0]
+GO
+ALTER TABLE [KnownWordToEntityOneToMany] WITH CHECK ADD CONSTRAINT [KnownWordToEntityOneToMany_fk1] FOREIGN KEY ([EntityId]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToEntityOneToMany] CHECK CONSTRAINT [KnownWordToEntityOneToMany_fk1]
+GO
+
+ALTER TABLE [KnownWordToFunctionOneToMany] WITH CHECK ADD CONSTRAINT [KnownWordToFunctionOneToMany_fk0] FOREIGN KEY ([WordId]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToFunctionOneToMany] CHECK CONSTRAINT [KnownWordToFunctionOneToMany_fk0]
+GO
+ALTER TABLE [KnownWordToFunctionOneToMany] WITH CHECK ADD CONSTRAINT [KnownWordToFunctionOneToMany_fk1] FOREIGN KEY ([FunctionId]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToFunctionOneToMany] CHECK CONSTRAINT [KnownWordToFunctionOneToMany_fk1]
+GO
+
+ALTER TABLE [KnownFunctionToEntityOneToMany] WITH CHECK ADD CONSTRAINT [KnownFunctionToEntityOneToMany_fk0] FOREIGN KEY ([FunctionId]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToEntityOneToMany] CHECK CONSTRAINT [KnownFunctionToEntityOneToMany_fk0]
+GO
+ALTER TABLE [KnownFunctionToEntityOneToMany] WITH CHECK ADD CONSTRAINT [KnownFunctionToEntityOneToMany_fk1] FOREIGN KEY ([EntityId]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToEntityOneToMany] CHECK CONSTRAINT [KnownFunctionToEntityOneToMany_fk1]
+GO
+
+ALTER TABLE [KnownWordToWordOneToMany] WITH CHECK ADD CONSTRAINT [KnownWordToWordOneToMany_fk0] FOREIGN KEY ([WordId0]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToWordOneToMany] CHECK CONSTRAINT [KnownWordToWordOneToMany_fk0]
+GO
+ALTER TABLE [KnownWordToWordOneToMany] WITH CHECK ADD CONSTRAINT [KnownWordToWordOneToMany_fk1] FOREIGN KEY ([WordId1]) REFERENCES [KnownWords]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownWordToWordOneToMany] CHECK CONSTRAINT [KnownWordToWordOneToMany_fk1]
+GO
+
+ALTER TABLE [KnownFunctionToFunctionOneToMany] WITH CHECK ADD CONSTRAINT [KnownFunctionToFunctionOneToMany_fk0] FOREIGN KEY ([FunctionId0]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToFunctionOneToMany] CHECK CONSTRAINT [KnownFunctionToFunctionOneToMany_fk0]
+GO
+ALTER TABLE [KnownFunctionToFunctionOneToMany] WITH CHECK ADD CONSTRAINT [KnownFunctionToFunctionOneToMany_fk1] FOREIGN KEY ([FunctionId1]) REFERENCES [KnownFunctions]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownFunctionToFunctionOneToMany] CHECK CONSTRAINT [KnownFunctionToFunctionOneToMany_fk1]
+GO
+
+ALTER TABLE [KnownEntityToEntityOneToMany] WITH CHECK ADD CONSTRAINT [KnownEntityToEntityOneToMany_fk0] FOREIGN KEY ([EntityId0]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownEntityToEntityOneToMany] CHECK CONSTRAINT [KnownEntityToEntityOneToMany_fk0]
+GO
+ALTER TABLE [KnownEntityToEntityOneToMany] WITH CHECK ADD CONSTRAINT [KnownEntityToEntityOneToMany_fk1] FOREIGN KEY ([EntityId1]) REFERENCES [KnownEntitys]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [KnownEntityToEntityOneToMany] CHECK CONSTRAINT [KnownEntityToEntityOneToMany_fk1]
+GO
+
+
+ALTER TABLE [SpeechJournalToSourcePersonOneToMany] WITH CHECK ADD CONSTRAINT [SpeechJournalToSourcePersonOneToMany_fk0] FOREIGN KEY ([SpeechJournalId]) REFERENCES [SpeechJournal]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [SpeechJournalToSourcePersonOneToMany] CHECK CONSTRAINT [SpeechJournalToSourcePersonOneToMany_fk0]
+GO
+ALTER TABLE [SpeechJournalToSourcePersonOneToMany] WITH CHECK ADD CONSTRAINT [SpeechJournalToSourcePersonOneToMany_fk1] FOREIGN KEY ([SourcePersonId]) REFERENCES [KnownPersons]([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [SpeechJournalToSourcePersonOneToMany] CHECK CONSTRAINT [SpeechJournalToSourcePersonOneToMany_fk1]
+GO
+
+
+
+
+
