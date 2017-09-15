@@ -1,5 +1,5 @@
 CREATE TABLE `KnownPersons` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`FirstName` varchar(255) NOT NULL DEFAULT 'UnknownPerson',
 	`MiddleName` varchar(255),
 	`SurName` varchar(255),
@@ -12,7 +12,7 @@ CREATE TABLE `KnownPersons` (
 );
 
 CREATE TABLE `KnownEntitys` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Name` varchar(255) NOT NULL DEFAULT 'UnknownEntity',
 	`DateAdded` DATETIME NOT NULL,
 	`DateReference` DATETIME NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `KnownEntitys` (
 );
 
 CREATE TABLE `KnownFunctions` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Name` varchar(255) NOT NULL DEFAULT 'UnknownFunction',
 	`DateAdded` DATETIME NOT NULL,
 	`DateReference` DATETIME NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `KnownFunctions` (
 );
 
 CREATE TABLE `KnownWords` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Name` varchar(255) NOT NULL,
 	`LanguagePartOfSpeechId` INT NOT NULL,
 	`LanguageTenseId` INT NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `KnownWords` (
 );
 
 CREATE TABLE `KnownFunctionToEntityOneToOne` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`FunctionId` INT NOT NULL,
 	`EntityId` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `KnownFunctionToEntityOneToOne` (
 );
 
 CREATE TABLE `KnownWordToEntityOneToOne` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`WordId` INT NOT NULL,
 	`EntityId` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE `KnownWordToEntityOneToOne` (
 );
 
 CREATE TABLE `KnownWordToFunctionOneToOne` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`WordId` INT NOT NULL,
 	`FunctionId` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE `KnownWordToFunctionOneToOne` (
 );
 
 CREATE TABLE `LanguagePartsOfSpeech` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Name` varchar(255) NOT NULL,
 	`QuestionsWhichAnswered` varchar(255) NOT NULL,
 	`MeaningNotion` varchar(255) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `LanguagePartsOfSpeech` (
 );
 
 CREATE TABLE `LanguageTenses` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Name` varchar(255) NOT NULL,
 	`QuestionsWhichAnswered` varchar(255) NOT NULL,
 	`MeaningNotion` varchar(255) NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE `LanguageTenses` (
 );
 
 CREATE TABLE `KnownFunctionToFunctionOneToOne` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`FunctionId0` INT NOT NULL,
 	`FunctionId1` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE `KnownFunctionToFunctionOneToOne` (
 );
 
 CREATE TABLE `KnownEntityToEntityOneToOne` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`EntityId0` INT NOT NULL,
 	`EntityId1` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE `KnownEntityToEntityOneToOne` (
 );
 
 CREATE TABLE `KnownWordToWordOneToOne` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`WordId0` INT NOT NULL,
 	`WordId1` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE `KnownWordToWordOneToOne` (
 );
 
 CREATE TABLE `SpeechJournal` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Text` varchar(4000) NOT NULL,
 	`DateAdded` DATETIME NOT NULL,
 	`DateReference` DATETIME NOT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE `SpeechJournal` (
 );
 
 CREATE TABLE `SpeechJournalToReceiverPersonOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`SpeechJournalId` INT NOT NULL,
 	`ReceiverPersonId` INT NOT NULL,
 	`DateAdded` DATETIME NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE `SpeechJournalToReceiverPersonOneToMany` (
 );
 
 CREATE TABLE `KnownWordToEntityOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`WordId` INT NOT NULL,
 	`EntityId` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE `KnownWordToEntityOneToMany` (
 );
 
 CREATE TABLE `KnownWordToFunctionOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`WordId` INT NOT NULL,
 	`FunctionId` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -169,7 +169,7 @@ CREATE TABLE `KnownWordToFunctionOneToMany` (
 );
 
 CREATE TABLE `KnownFunctionToEntityOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`FunctionId` INT NOT NULL,
 	`EntityId` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE `KnownFunctionToEntityOneToMany` (
 );
 
 CREATE TABLE `KnownWordToWordOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`WordId0` INT NOT NULL,
 	`WordId1` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -191,7 +191,7 @@ CREATE TABLE `KnownWordToWordOneToMany` (
 );
 
 CREATE TABLE `KnownFunctionToFunctionOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`FunctionId0` INT NOT NULL,
 	`FunctionId1` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -202,7 +202,7 @@ CREATE TABLE `KnownFunctionToFunctionOneToMany` (
 );
 
 CREATE TABLE `KnownEntityToEntityOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`EntityId0` INT NOT NULL,
 	`EntityId1` INT NOT NULL,
 	`ConformityPercentage` FLOAT NOT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE `KnownEntityToEntityOneToMany` (
 );
 
 CREATE TABLE `KnownSentenceWordsOrderMethods` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Method` varchar(255) NOT NULL,
 	`QuestionsWhichAnswered` varchar(255) NOT NULL,
 	`MeaningNotion` varchar(255) NOT NULL,
@@ -225,7 +225,7 @@ CREATE TABLE `KnownSentenceWordsOrderMethods` (
 );
 
 CREATE TABLE `SpeechJournalToSourcePersonOneToMany` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`SpeechJournalId` INT NOT NULL,
 	`SourcePersonId` INT NOT NULL,
 	`DateAdded` DATETIME NOT NULL,
@@ -235,7 +235,7 @@ CREATE TABLE `SpeechJournalToSourcePersonOneToMany` (
 );
 
 CREATE TABLE `KnownSectionSentenceOrderMethods` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Method` varchar(255) NOT NULL,
 	`QuestionsWhichAnswered` varchar(255) NOT NULL,
 	`MeaningNotion` varchar(255) NOT NULL,
@@ -247,7 +247,7 @@ CREATE TABLE `KnownSectionSentenceOrderMethods` (
 );
 
 CREATE TABLE `KnownSpeechSectionOrderMethods` (
-	`Id` INT NOT NULL,
+	`Id` INT NOT NULL AUTO_INCREMENT,
 	`Method` varchar(255) NOT NULL,
 	`QuestionsWhichAnswered` varchar(255) NOT NULL,
 	`MeaningNotion` varchar(255) NOT NULL,
@@ -317,6 +317,5 @@ ALTER TABLE `KnownEntityToEntityOneToMany` ADD CONSTRAINT `KnownEntityToEntityOn
 ALTER TABLE `SpeechJournalToSourcePersonOneToMany` ADD CONSTRAINT `SpeechJournalToSourcePersonOneToMany_fk0` FOREIGN KEY (`SpeechJournalId`) REFERENCES `SpeechJournal`(`Id`);
 
 ALTER TABLE `SpeechJournalToSourcePersonOneToMany` ADD CONSTRAINT `SpeechJournalToSourcePersonOneToMany_fk1` FOREIGN KEY (`SourcePersonId`) REFERENCES `KnownPersons`(`Id`);
-
 
 
