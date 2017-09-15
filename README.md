@@ -1,3 +1,5 @@
+http://rcppe.ru/projects/iu/Автоматическая-развиваемая-информационная-система-на-основе-технологий-СУБД
+
 API to entry points for automatic resolved information system based on DBMS technologies
 
 It is proposed to implement an example of the IP implemented on the following principles: 1) a finite state machine. 2) event-oriented programming the internal logic (i.e. stored procedures). 3) trigger response with the environment (table SpeechJournal). The analysis of the vocabulary it is proposed to produce functional essential principle, dictionary of IP to fill in from scratch. Offer a specific format of database and tables, and ready-made function to create them on the database server MSSQL Server 2014 and other.
